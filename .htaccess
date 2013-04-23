@@ -1,0 +1,49 @@
+Redirect 301 /our-work /our-portfolio
+Redirect 301 /web-design-portfolio/spy-bar-chicago-night-club-web-design-flash-develo.html /web-design-portfolio/spy-bar-chicago-night-club-web-design-flash-development.html
+Options -Indexes +FollowSymLinks
+
+AddType video/mp4 mp4
+AddType video/webm webm
+AddType text/x-component htc
+
+RewriteEngine On
+RewriteBase /
+
+#RewriteCond %{REQUEST_FILENAME} index.php [NC]
+#RewriteRule .* - [L]
+
+#RewriteCond %{THE_REQUEST} favicon.ico [NC]
+#RewriteRule (.*) http://%{HTTP_HOST}/favicon.ico [R=301,L]
+
+RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK)
+RewriteRule .* - [F,L]
+
+#RewriteCond %{REQUEST_FILENAME} -s [OR]
+#RewriteCond %{REQUEST_FILENAME} -l [OR]
+#RewriteCond %{REQUEST_FILENAME} -d
+#RewriteRule ^.*$ - [NC,L]
+#RewriteRule ^.*$ index.php [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+RewriteCond %{Request_FILENAME} !-d 
+RewriteCond %{REQUEST_FILENAME} !robots.txt$|/administrator/*|.*pdf$|.*flv$|.*webm$|.*htc$|.*mp4$|.*jpg$|.*.jpeg$|.*gif$|.*png$|.*css$|.*js$|.*swf$|.*xap$|google3ed2633e64587a43.html$|index.html$|=index.html$|.*ico$|index.php$ [NC]
+RewriteRule .* index.php [NC,L]
+RewriteRule .* - [L]
+
+<Files ~ "^.*\.([Hh][Tt][Aa])">
+ order allow,deny
+ deny from all
+ satisfy all
+</Files>
+
+<Files ~ "^(.*)\.(ini|xml|tpl|phtml|sql)$">
+Order deny,allow
+Deny from all
+</Files>
+
+<Files sitemap.xml>
+Allow from all
+Satisfy all
+</Files>
